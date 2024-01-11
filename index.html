@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Dashboard</title>
+
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/css/style.css"/> 
+
+</head>
+<body class="flex-column min-100-vh">
+    <header>
+        <div class="container text-center">
+            <h1>Weather Dashboard</h1>
+        </div>
+    </header>
+
+    <main class="flex-row justify-space-between">
+        <div class="col-12 col-md-4">
+    
+          <div class="card">
+            <h3 class="card-header text-uppercase">Search By City</h3>
+            <form id="user-form" class="card-body">
+              <label class="form-label" for="city-name">City</label>
+              <input name="city-name" id="city-name" type="text" autofocus="true" class="form-input" />
+              <button type="submit" class="btn btn-primary">Search</button>
+            </form>
+          </div>
+    
+          <div class="card">
+            <h3 class="card-header text-uppercase">Search History</h3>
+            <div id="previous-search" class="card-body">
+             
+            </div>
+          </div>
+        </div>
+    
+        <div class="col-12 col-md-8">
+          <h2 class="subtitle">Current Weather for: <span id="city-search"></span></h2>
+          <div id="current-forecast" class="list-group"></div>
+        </div>
+
+        <div class="col-12 col-md-8">
+            <h2 class="subtitle">5-Day Forecast for: <span id="city-search"></span></h2>
+            <div id="future-forecast" class="list-group"></div>
+          </div>
+      </main>
+
+
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
+    <script src="./assets/js/script.js"></script>
+
+</body>
+    
+</html>
