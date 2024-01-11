@@ -50,7 +50,7 @@ var getForecastApi = function (latlon) {
   var lon = latlon[0].lon;
   console.log (lat, lon)
 
-  var apiUrlLatLon = 'http://api.openweathermap.org/data/2.5/forecast?lat=' + lat +'&lon=' + lon +'&appid=3b756324be6cb542e7863f4bcffe7ce9&units=imperial';
+  var apiUrlLatLon = 'https://api.openweathermap.org/data/2.5/forecast?lat=' + lat +'&lon=' + lon +'&appid=3b756324be6cb542e7863f4bcffe7ce9&units=imperial';
   // var apiUrlLatLon = 'http://api.openweathermap.org/data/2.5/forecast?lat=37.3361663&lon=-121.890591&appid=3b756324be6cb542e7863f4bcffe7ce9';
 
     fetch(apiUrlLatLon)
