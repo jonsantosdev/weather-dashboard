@@ -26,7 +26,7 @@ var formSubmitHandler = function (event) {
 
 var getWeatherApi = function (city) {
     // var apiUrl = 'http://api.openweathermap.org/geo/1.0/direct?q={city name}&limit=5&appid=3b756324be6cb542e7863f4bcffe7ce9';
-    var apiUrl = 'http://api.openweathermap.org/geo/1.0/direct?q=' + city +'&limit=1&appid=3b756324be6cb542e7863f4bcffe7ce9';
+    var apiUrl = 'https://api.openweathermap.org/geo/1.0/direct?q=' + city +'&limit=1&appid=3b756324be6cb542e7863f4bcffe7ce9';
 
     fetch(apiUrl)
       .then(function (response) {
