@@ -92,13 +92,13 @@ var displayForecast = function (data2) {
         card.classList="forecast-card";
 
         var cardTemp = document.createElement("span");
-        cardTemp.textContent = "temperature" + temp;
+        cardTemp.textContent = "Temperature" + temp + "C ";
 
         var cardHumidity = document.createElement("span");
-        cardHumidity.textContent = humidity;
+        cardHumidity.textContent = "Humidity: " + humidity + "% ";
 
         var cardWind = document.createElement("span");
-        cardWind.textContent = wind;
+        cardWind.textContent = "Wind Speed: " + wind + "mph ";
 
         var cardIcon = document.createElement("img");
         cardIcon.setAttribute("src", 'https://openweathermap.org/img/w/' + icon +'.png');
@@ -108,22 +108,23 @@ var displayForecast = function (data2) {
 
         fiveDayEl.appendChild(card);
         // console.log(temp);
+
+        card.appendChild(cardDate);
+        card.appendChild(cardIcon);
         card.appendChild(cardTemp);
         card.appendChild(cardHumidity);
         card.appendChild(cardWind);
-        card.appendChild(cardIcon);
-        card.appendChild(cardDate);
-
-
-
-
-
+       
       }
 
 }
 
 var displayDayForecast = function (data3) {
   console.log(data3);
+
+  while(currentDayEl.firstChild) {
+    currentDayEl.removeChild(currentDayEl.firstChild);
+   }
 
 
   var tempD = data3.list[0].main.temp;
@@ -152,11 +153,13 @@ var displayDayForecast = function (data3) {
 
   currentDayEl.appendChild(cardD);
 
+  cardD.appendChild(cardDateD);
+  cardD.appendChild(cardIconD);
   cardD.appendChild(cardTempD);
   cardD.appendChild(cardHumidityD);
   cardD.appendChild(cardWindD);
-  cardD.appendChild(cardIconD);
-  cardD.appendChild(cardDateD);
+  
+  
 
 
 }
