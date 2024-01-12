@@ -60,6 +60,7 @@ var getForecastApi = function (latlon) {
         //  console.log(data1); //////////////////////////////////////
 
           displayForecast(data1);
+          displayDayForecast(data1);
         })
 
 
@@ -118,14 +119,48 @@ var displayForecast = function (data2) {
 
 
       }
-  
 
-        
+}
+
+var displayDayForecast = function (data3) {
+  console.log(data3);
 
 
+  var tempD = data3.list[0].main.temp;
+  var humidityD = data3.list[0].main.humidity;
+  var windD = data3.list[0].wind.speed;
+  var iconD = data3.list[0].weather[0].icon;
+  var dateD = data3.list[0].dt_txt;
 
+  var cardD = document.createElement("div");
+  cardD.classList="forecast-card";
+
+  var cardTempD = document.createElement("span");
+  cardTempD.textContent = "Temperature: " + tempD + "C   ";
+
+  var cardHumidityD = document.createElement("span");
+  cardHumidityD.textContent = "Humidity: " + humidityD + "%   ";
+
+  var cardWindD = document.createElement("span");
+  cardWindD.textContent = "Wind Speed: " + windD + "mph   ";
+
+  var cardIconD = document.createElement("img");
+  cardIconD.setAttribute("src", 'https://openweathermap.org/img/w/' + iconD +'.png');
+
+  var cardDateD = document.createElement("span");
+  cardDateD.textContent = dateD;
+
+  currentDayEl.appendChild(cardD);
+
+  cardD.appendChild(cardTempD);
+  cardD.appendChild(cardHumidityD);
+  cardD.appendChild(cardWindD);
+  cardD.appendChild(cardIconD);
+  cardD.appendChild(cardDateD);
 
 
 }
+
+
 
 userFormEl.addEventListener('submit', formSubmitHandler);
