@@ -2,6 +2,12 @@ var userFormEl = document.querySelector('#user-form');
 var cityNameInputEl = document.querySelector('#city-name');
 var currentDayEl = document.querySelector('#current-forecast');
 var fiveDayEl = document.querySelector('#future-forecast');
+var currentCity = document.querySelector('#city-search');
+var cityButtonEl = document.querySelector('.past-city-button');
+var pastCity = JSON.parse(localStorage.getItem("city"))?JSON.parse(localStorage.getItem("city")):[];
+
+//
+var previousSearchEl = document.querySelector('#previous-search');
 
 // var apiUrlLatLon = api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid=3b756324be6cb542e7863f4bcffe7ce9
 
@@ -12,9 +18,15 @@ var formSubmitHandler = function (event) {
     var cityName = cityNameInputEl.value.trim();
     // alert(cityName);
     console.log(cityName);
+    pastCity.push(cityName);
+    console.log(pastCity);
+    //local storage
+    localStorage.setItem("city", JSON.stringify(pastCity));
   
     if (cityName) {
       getWeatherApi(cityName);
+      renderLastRegistered(cityName);
+
   
     //  repoContainerEl.textContent = '';
     //  nameInputEl.value = '';
@@ -25,6 +37,7 @@ var formSubmitHandler = function (event) {
 
 
 var getWeatherApi = function (city) {
+
     // var apiUrl = 'http://api.openweathermap.org/geo/1.0/direct?q={city name}&limit=5&appid=3b756324be6cb542e7863f4bcffe7ce9';
     var apiUrl = 'https://api.openweathermap.org/geo/1.0/direct?q=' + city +'&limit=1&appid=3b756324be6cb542e7863f4bcffe7ce9';
 
@@ -65,9 +78,6 @@ var getForecastApi = function (latlon) {
 
 
       })
-
-
-
 
 }
 
@@ -120,8 +130,10 @@ var displayForecast = function (data2) {
 }
 
 var displayDayForecast = function (data3) {
-  console.log(data3);
-
+  console.log(data3.city.name);
+  currentCity.textContent = data3.city.name;
+  
+   // removes previous card entries 
   while(currentDayEl.firstChild) {
     currentDayEl.removeChild(currentDayEl.firstChild);
    }
@@ -159,11 +171,39 @@ var displayDayForecast = function (data3) {
   cardD.appendChild(cardHumidityD);
   cardD.appendChild(cardWindD);
   
-  
+}
 
+var renderLastRegistered = function(last) {
+  
+  // var cityLast = JSON.parse(localStorage.getItem("city"));
+  // console.log(cityLast);
+
+  // for (var i = 0; i < cityLast.length; i++) {
+    
+  //   // var previousCity = cityLast[i]; // not needed
+
+
+  // }
+  var cityButton = document.createElement("button");
+  console.log("test");
+  previousSearchEl.appendChild(cityButton);
+  cityButton.textContent = last;
+  
+  cityButton.setAttribute("class", "past-city-button");
+  
+  console.log(cityButtonEl);
+
+  //console.log(cityButtonEl);
 
 }
 
 
 
 userFormEl.addEventListener('submit', formSubmitHandler);
+
+previousSearchEl.addEventListener('click', function(event){
+  event.preventDefault();
+  console.log(event.target);
+  console.log(event.target.innerHTML);
+  getWeatherApi(event.target.innerHTML);
+});
